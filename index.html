@@ -67,6 +67,7 @@
     
 </body>
 <script>
+    
 
    var blockSize = 25;
    var total_row = 17;
@@ -78,6 +79,7 @@
     const btnDown = document.getElementById('down');
     const btnRight = document.getElementById('right');
     const btnLeft = document.getElementById('left');
+    var board = getElementById('board');
 
    var snakeX = blockSize*5;
    var snakeY = blockSize*5;
@@ -102,6 +104,17 @@
     placeFood();
     document.addEventListener('keydown',changeDirection);
     setInterval(update, 100);
+
+   (function(){
+    if(window.navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/i)){
+        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
+
+        board.style.height = window.height+'px';
+        board.style.width = window.width+'px';
+    }
+   })();
+
    };
    function update(){
     if(gameOver){
