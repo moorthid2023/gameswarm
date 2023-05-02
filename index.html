@@ -191,15 +191,15 @@
    btnLeft.addEventListener('touchstart',handler2);
    function handler2(e){
     if(e.touches && speedX!=1){
-        speedX =0;
-        speedY =-1;
+        speedX =-1;
+        speedY =0;
     }
    }
    btnRight.addEventListener('touchstart',handler3);
    function handler3(e){
     if(e.touches && speedX!=-1){
-        speedX =0;
-        speedY =1;
+        speedX =1;
+        speedY =0;
     }
    }
    function placeFood(){
