@@ -33,25 +33,30 @@
             transform: translate(-50%,-50%);
         }
         #up,#down,#right,#left{
+            font-size: large;
+            font-weight: 600;
             position:absolute;
             bottom: 10px;
             width: 100px;
-            height: 40px;
-            opacity: 0.3;
+            height: 200px;
+            /* opacity: 0.3; */
         }
         #up{
-            top: 60%;
+            left: -20%;
+            top: 20%;
+            
         }
         #right{
-            top:70%;
+            top:20%;
         }
        #left{
-        left: -24%;
+        
         top: 60%;
+        
        }
        #down{
-        left: -24%;
-        top: 70%;
+        left: -20%;
+        top: 60%;
        }
     </style>
 </head>
@@ -153,9 +158,9 @@
         ctx.strokeRect(snakeBody[i][0],snakeBody[i][1],blockSize,blockSize);
     }
     if(snakeX<0
-       || snakeX>=total_col*blockSize
+       || snakeX>=canvas.width
        || snakeY <0
-       || snakeY >= total_row*blockSize){
+       || snakeY >= canvas.height){
         gameOver = true;
         alert('game over');
        };
