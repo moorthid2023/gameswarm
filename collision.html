@@ -173,6 +173,13 @@
         speedY = 0;
     }
    };
+   document.btnUP.addEventListener('touchstart',handler);
+   function handler(e){
+    if(e.touches && speedY!=1){
+        speedX =0;
+        speedY =-1;
+    }
+   }
    function placeFood(){
     foodX = Math.floor(Math.random()*total_col)*blockSize;
     foodY = Math.floor(Math.random()*total_row)*blockSize;
