@@ -181,22 +181,22 @@
     }
    }
   
-   btnDown.addEventListener('touchstart',handler);
-   function handler(e){
+   btnDown.addEventListener('touchstart',handler1);
+   function handler1(e){
     if(e.touches && speedY!=-1){
         speedX =0;
         speedY =1;
     }
    }
-   btnLeft.addEventListener('touchstart',handler);
-   function handler(e){
+   btnLeft.addEventListener('touchstart',handler2);
+   function handler2(e){
     if(e.touches && speedX!=1){
         speedX =0;
         speedY =-1;
     }
    }
-   btnRight.addEventListener('touchstart',handler);
-   function handler(e){
+   btnRight.addEventListener('touchstart',handler3);
+   function handler3(e){
     if(e.touches && speedX!=-1){
         speedX =0;
         speedY =1;
