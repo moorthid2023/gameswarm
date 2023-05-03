@@ -64,6 +64,7 @@
     <div id="board">
         <div id="heading"><h1>The Swarm Eats Grass</h1></div>
         <canvas></canvas>
+        <span id="span"></span>
         <!-- <button id="up">UP</button>
         <button id="right">Right</button>
         <button id="down">Down</button>
@@ -85,7 +86,7 @@
     const btnRight = document.getElementById('right');
     const btnLeft = document.getElementById('left');
     var board = document.getElementById('board');
-
+    var span = document.getElementById('span');
    var snakeX = blockSize*5;
    var snakeY = blockSize*5;
 
@@ -130,6 +131,7 @@ function handleTouchMove(event) {
     // horizontal movement
     if (deltaX > 0) {
       // move right
+      span.innerHTML='hi';
       if(!speedX == -1){
         speedX = 1;
         speedY = 0;
