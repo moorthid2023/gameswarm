@@ -108,7 +108,65 @@
     
     placeFood();
     document.addEventListener('keydown',changeDirection);
-    setInterval(update, 100);
+
+     let touchX, touchY;
+
+    function handleTouchStart(event) {
+    touchX = event.touches[0].clientX;
+    touchY = event.touches[0].clientY;
+}
+function handleTouchMove(event) {
+  if (!touchX || !touchY) {
+    return;
+  }
+
+  let newTouchX = event.touches[0].clientX;
+  let newTouchY = event.touches[0].clientY;
+
+  let deltaX = newTouchX - touchX;
+  let deltaY = newTouchY - touchY;
+
+  if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    // horizontal movement
+    if (deltaX > 0) {
+      // move right
+      if(!speedX == -1){
+        speedX = 1;
+        speedY = 0;
+      }
+    } else {
+        if(!speedX == 1){
+            speedX = -1;
+            speedY =0;
+        }
+      // move left
+    }
+  } else {
+    // vertical movement
+    if (deltaY > 0) {
+        if(!speedY == -1){}
+      // move down
+      speedX = 0;
+      speedY = 1;
+    } else {
+        if(!speedY == 1){
+      // move up
+         speedX =0;
+         speedY = -1;}
+    }
+  }
+
+  touchX = newTouchX;
+  touchY = newTouchY;
+}
+function handleTouchEnd(event) {
+  touchX = null;
+  touchY = null;
+}
+
+
+
+    setInterval(update, 200);
 
    (function(){
     if(window.navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/i)){
@@ -221,60 +279,7 @@
 //     }
 //    }
 
-   let touchX, touchY;
-
-    function handleTouchStart(event) {
-    touchX = event.touches[0].clientX;
-    touchY = event.touches[0].clientY;
-}
-function handleTouchMove(event) {
-  if (!touchX || !touchY) {
-    return;
-  }
-
-  let newTouchX = event.touches[0].clientX;
-  let newTouchY = event.touches[0].clientY;
-
-  let deltaX = newTouchX - touchX;
-  let deltaY = newTouchY - touchY;
-
-  if (Math.abs(deltaX) > Math.abs(deltaY)) {
-    // horizontal movement
-    if (deltaX > 0) {
-      // move right
-      if(!speedX == -1){
-        speedX = 1;
-        speedY = 0;
-      }
-    } else {
-        if(!speedX == 1){
-            speedX = -1;
-            speedY =0;
-        }
-      // move left
-    }
-  } else {
-    // vertical movement
-    if (deltaY > 0) {
-        if(!speedY == -1){}
-      // move down
-      speedX = 0;
-      speedY = 1;
-    } else {
-        if(!speedY == 1){
-      // move up
-         speedX =0;
-         speedY = -1;}
-    }
-  }
-
-  touchX = newTouchX;
-  touchY = newTouchY;
-}
-function handleTouchEnd(event) {
-  touchX = null;
-  touchY = null;
-}
+  
 
 
    function placeFood(){
