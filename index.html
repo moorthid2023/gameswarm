@@ -64,10 +64,10 @@
     <div id="board">
         <div id="heading"><h1>The Swarm Eats Grass</h1></div>
         <canvas></canvas>
-        <button id="up">UP</button>
+        <!-- <button id="up">UP</button>
         <button id="right">Right</button>
         <button id="down">Down</button>
-        <button id="left">Left</button>
+        <button id="left">Left</button> -->
     </div>
     
 </body>
@@ -191,35 +191,92 @@
         speedY = 0;
     }
    };
-   btnUP.addEventListener('touchstart',handler);
-   function handler(e){
-    if(e.touches && speedY!=1){
-        speedX =0;
-        speedY =-1;
-    }
-   }
+//    btnUP.addEventListener('touchstart',handler);
+//    function handler(e){
+//     if(e.touches && speedY!=1){
+//         speedX =0;
+//         speedY =-1;
+//     }
+//    }
   
-   btnDown.addEventListener('touchstart',handler1);
-   function handler1(e){
-    if(e.touches && speedY!=-1){
-        speedX =0;
-        speedY =1;
+//    btnDown.addEventListener('touchstart',handler1);
+//    function handler1(e){
+//     if(e.touches && speedY!=-1){
+//         speedX =0;
+//         speedY =1;
+//     }
+//    }
+//    btnLeft.addEventListener('touchstart',handler2);
+//    function handler2(e){
+//     if(e.touches && speedX!=1){
+//         speedX =-1;
+//         speedY =0;
+//     }
+//    }
+//    btnRight.addEventListener('touchstart',handler3);
+//    function handler3(e){
+//     if(e.touches && speedX!=-1){
+//         speedX =1;
+//         speedY =0;
+//     }
+//    }
+
+   let touchX, touchY;
+
+    function handleTouchStart(event) {
+    touchX = event.touches[0].clientX;
+    touchY = event.touches[0].clientY;
+}
+function handleTouchMove(event) {
+  if (!touchX || !touchY) {
+    return;
+  }
+
+  let newTouchX = event.touches[0].clientX;
+  let newTouchY = event.touches[0].clientY;
+
+  let deltaX = newTouchX - touchX;
+  let deltaY = newTouchY - touchY;
+
+  if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    // horizontal movement
+    if (deltaX > 0) {
+      // move right
+      if(!speedX == -1){
+        speedX = 1;
+        speedY = 0;
+      }
+    } else {
+        if(!speedX == 1){
+            speedX = -1;
+            speedY =0;
+        }
+      // move left
     }
-   }
-   btnLeft.addEventListener('touchstart',handler2);
-   function handler2(e){
-    if(e.touches && speedX!=1){
-        speedX =-1;
-        speedY =0;
+  } else {
+    // vertical movement
+    if (deltaY > 0) {
+        if(!speedY == -1){}
+      // move down
+      speedX = 0;
+      speedY = 1;
+    } else {
+        if(!speedY == 1){
+      // move up
+         speedX =0;
+         speedY = -1;}
     }
-   }
-   btnRight.addEventListener('touchstart',handler3);
-   function handler3(e){
-    if(e.touches && speedX!=-1){
-        speedX =1;
-        speedY =0;
-    }
-   }
+  }
+
+  touchX = newTouchX;
+  touchY = newTouchY;
+}
+function handleTouchEnd(event) {
+  touchX = null;
+  touchY = null;
+}
+
+
    function placeFood(){
     foodX = Math.floor(Math.random()*total_col)*blockSize;
     foodY = Math.floor(Math.random()*total_row)*blockSize;
