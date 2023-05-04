@@ -21,14 +21,14 @@
             border: 1px solid black;
             background-image: url("path/to/croppedTexture.jpg");
             background-size: cover;
-            box-shadow: 1px 5px 10px black;
+            box-shadow: 11px 15px 10px black;
             max-width: 100%;
             max-height: 100%;
         }
         #board{
             text-align: center;
-            color:white;
-            text-shadow: 1px 1px 10px black;
+            color:black;
+            text-shadow: 15px 5px 20px white;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -97,14 +97,14 @@
 
    var gameOver = false;
 
-
+    
 
    window.onload = function(){
     canvas = document.querySelector('canvas');
     canvas.height = 500;
     canvas.width = 500;
     ctx = canvas.getContext('2d');
-     
+    canvas.style.cursor='pointer';
     const ball = {
             x: canvas.width / 2,
             y: canvas.height / 2,
@@ -128,24 +128,6 @@
     setInterval(()=>{
         draw();
         update();
-        ball.x += ball.dx;
-            ball.y += ball.dy;
-            if (ball.x + ball.radius > canvas.width) {
-                ball.x = canvas.width - ball.radius;
-                ball.dx = 0;
-            }
-            if (ball.x - ball.radius < 0) {
-                ball.x = ball.radius;
-                ball.dx = 0;
-            }
-            if (ball.y + ball.radius > canvas.height) {
-                ball.y = canvas.height - ball.radius;
-                ball.dy = 0;
-            }
-            if (ball.y - ball.radius < 0) {
-                ball.y = ball.radius;
-                ball.dy = 0;
-            }
     }, 200);
 
    (function(){
@@ -231,23 +213,6 @@
         speedY = 0;
     }
    };
-
-   function handleTouchStart(evt) {
-            const touch = evt.touches[0];
-            const touchX = touch.pageX - canvas.offsetLeft;
-            const touchY = touch.pageY - canvas.offsetTop;
-            const angle = Math.atan2(touchY - ball.y, touchX - ball.x);
-            ball.dx = ball.speed * Math.cos(angle);
-            ball.dy = ball.speed * Math.sin(angle);
-        }
-
-        addEventListener('touchstart', handleTouchStart, false);
-
-
-
-
- 
-
 
    function placeFood(){
     foodX = Math.floor(Math.random()*total_col)*blockSize;
